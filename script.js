@@ -41,6 +41,13 @@ const timeGenerator = () => {
     seconds = 0;
   }
 
+  // Fonction pour formater le temps de fin de jeu
+  const formatTime = (minutes, seconds) => {
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+    return `${formattedMinutes}:${formattedSeconds}`;
+  };
+
   //format time before displaying
   let secondsValue = seconds < 10 ? `0${seconds}` : seconds;
   let minutesValue = minutes < 10 ? `0${minutes}` : minutes;
@@ -54,7 +61,7 @@ const movesCounter = () => {
 };
 
 //Pick random objects from the items array
-const generateRandom = (size = 4) => {
+const generateRandom = (size = 2) => {
   //temporary array
   let tempArrray = [...items];
   //initializes cardValues array
@@ -70,7 +77,7 @@ const generateRandom = (size = 4) => {
   return cardValues;
 };
 
-const matrixGenerator = (cardValues, size = 4) => {
+const matrixGenerator = (cardValues, size = 2) => {
   gameContainer.innerHTML = "";
   cardValues = [...cardValues, ...cardValues];
   cardValues.sort(() => Math.random() - 0.5);
@@ -106,7 +113,11 @@ const matrixGenerator = (cardValues, size = 4) => {
             //wincount increment
             winCount += 1;
             if (winCount == Math.floor(cardValues.length / 2)) {
-              result.innerHTML = `<h2>You won </h2> <h4>Moves: ${movesCount}</h4>`;
+              result.innerHTML = `<h2>You won </h2> <h4>Moves: ${movesCount} <br>Time: ${formatTime(
+                minutes,
+                seconds
+              )}</h4>`;
+
               stopGame();
             }
           } else {
@@ -130,6 +141,7 @@ startButton.addEventListener("click", () => {
   movesCount = 0;
   time = 0;
   minutes = 0;
+  seconds = 0;
   //controls and button visibility
   controls.classList.add("hide");
   stopButton.classList.remove("hide");
@@ -161,3 +173,6 @@ const initializer = () => {
   console.log(cardValues);
   matrixGenerator(cardValues);
 };
+
+//test
+let elapsedTime = 0;
