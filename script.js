@@ -61,7 +61,7 @@ const movesCounter = () => {
 };
 
 //Pick random objects from the items array
-const generateRandom = (size = 2) => {
+const generateRandom = (size = 4) => {
   //temporary array
   let tempArrray = [...items];
   //initializes cardValues array
@@ -77,7 +77,7 @@ const generateRandom = (size = 2) => {
   return cardValues;
 };
 
-const matrixGenerator = (cardValues, size = 2) => {
+const matrixGenerator = (cardValues, size = 4) => {
   gameContainer.innerHTML = "";
   cardValues = [...cardValues, ...cardValues];
   cardValues.sort(() => Math.random() - 0.5);
