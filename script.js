@@ -41,17 +41,17 @@ const timeGenerator = () => {
     seconds = 0;
   }
 
-  // Fonction pour formater le temps de fin de jeu
-  const formatTime = (minutes, seconds) => {
-    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
-    return `${formattedMinutes}:${formattedSeconds}`;
-  };
-
   //format time before displaying
   let secondsValue = seconds < 10 ? `0${seconds}` : seconds;
   let minutesValue = minutes < 10 ? `0${minutes}` : minutes;
   timeValue.innerHTML = `<span>Time:</span>${minutesValue}:${secondsValue}`;
+};
+
+// Fonction pour formater le temps de fin de jeu
+const formatTime = (minutes, seconds) => {
+  const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+  const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+  return `${formattedMinutes}:${formattedSeconds}`;
 };
 
 // Moves Calaculator
